@@ -1,0 +1,26 @@
+---
+
+- hosts: all
+  become: true
+  become_user: root
+  tasks:
+#  - name: update apt package index
+#    apt:
+#      update_cache: true
+#    when: ansible_distribution in ["Ubuntu", "Debian"]
+  - name: configure configuration
+    aireos_config:
+      lines: sysname testDevice
+
+  - name: diff the running-config against a provided config
+    aireos_config:
+      diff_against: intended
+      intended: "{{ lookup('file', 'master.cfg') }}"
+
+  - name: load new acl into device
+    aireos_config:
+      lines:
+        - acl create testACL
+        - acl rule protocol testACL 1 any
+        - acl rule direction testACL 3 in
+      before: acl delete testACL

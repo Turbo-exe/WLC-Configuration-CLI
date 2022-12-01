@@ -1,0 +1,26 @@
+all:
+  children:
+    CISCO:
+      children:
+        DGF_WLCs:
+          hosts:
+            dlw02tm98l.test.sub:
+              fqdn: dlw02tm98l.test.sub
+              group_names:
+              - DGF_WLCs
+              ipv4: 
+              ipv6: 
+              manufacturer_name: CISCO
+              name: host_dlw02tm98l.test.sub
+            testhost:
+              fqdn: testhost
+              group_names:
+              - DGF_WLCs
+              ipv4: 
+              ipv6: 
+              manufacturer_name: CISCO
+              name: host_testhost
+      hosts: 
+    HUAWEI:
+      children: 
+      hosts: 
